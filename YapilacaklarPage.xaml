@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GorselOdev3.YapilacaklarPage"
+             Title="Yapılacaklar">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" IconImageSource="add.png" Clicked="OnAddClicked" />
+        <ToolbarItem Text="Yenile" IconImageSource="refresh.png" Clicked="OnRefreshClicked" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Padding="10" Spacing="10">
+        <StackLayout x:Name="AddYapilacakLayout" IsVisible="False" Padding="10" Spacing="10">
+            <Entry x:Name="entryBaslik" Text="{Binding Baslik}" Placeholder="Başlık" />
+            <Editor x:Name="editorAciklama" Text="{Binding Aciklama}" Placeholder="Açıklama" />
+            <Button Text="Kaydet" Clicked="OnSaveClicked" />
+        </StackLayout>
+
+        <CollectionView x:Name="YapilacaklarListesi" SelectionMode="None" ItemsSource="{Binding Yapilacaklar}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Spacing="5">
+                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <CheckBox IsChecked="{Binding Tamamlandi}"
+                                      CheckedChanged="OnTamamlandiCheckedChanged"
+                                      Color="#0078D4" VerticalOptions="Center" />
+
+                            <Label Text="{Binding Baslik}" FontSize="Medium" FontAttributes="Bold"
+                                   VerticalOptions="Center" LineBreakMode="TailTruncation" />
+
+                            <Button Text="✎" BackgroundColor="Transparent" Clicked="OnEditClicked"
+                                    CommandParameter="{Binding .}" TextColor="#0078D4"
+                                    FontSize="18" BorderColor="#0078D4" BorderWidth="2" Padding="5" />
+
+                            <Button Text="-" BackgroundColor="Transparent" TextColor="Red"
+                                    Clicked="OnRemoveClicked" CommandParameter="{Binding .}"
+                                    FontSize="18" BorderColor="Red" BorderWidth="2" Padding="5" />
+                        </HorizontalStackLayout>
+
+                        <Label Text="{Binding Aciklama}" FontSize="Small" TextColor="Gray"
+                               LineBreakMode="TailTruncation" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

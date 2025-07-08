@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:GorselOdev3.Models"
+             x:Class="GorselOdev3.Kurlar"
+             Title="Güncel Kurlar">
+    <ContentPage.BindingContext>
+        <vm:KurlarViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="refresh.png"
+                     Text="Yenile"
+                     Command="{Binding YenileCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <CollectionView ItemsSource="{Binding KurlarListesi}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="5" Padding="10" Margin="5" BorderColor="#E0E0E0" BackgroundColor="White">
+                            <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto,Auto" Padding="5">
+                                <Label Text="{Binding Tur}" 
+                                       FontSize="16" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#333"
+                                       VerticalOptions="Center" />
+
+                                <Label Text="{Binding Alis}" 
+                                       FontSize="14" 
+                                       TextColor="#666"
+                                       Grid.Row="1" />
+                                <Label Text="{Binding Satis}" 
+                                       FontSize="14" 
+                                       TextColor="#666"
+                                       Grid.Row="1"
+                                       Grid.Column="1" 
+                                       HorizontalOptions="End" />
+
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End" Grid.Row="0" Grid.Column="2">
+                                    <Label Text="{Binding Fark}" 
+                                           FontSize="14" 
+                                           TextColor="{Binding FarkRenk}" 
+                                           VerticalOptions="Center" />
+                                    <Image Source="{Binding YonIkon}" 
+                                           WidthRequest="20" 
+                                           HeightRequest="20" 
+                                           VerticalOptions="Center" 
+                                           Margin="5,0,0,0" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

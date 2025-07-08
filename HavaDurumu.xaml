@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:GorselOdev3.Models"
+             x:Class="GorselOdev3.HavaDurumu"
+             Title="HavaDurumu">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" IconImageSource="add.png" Clicked="OnAddCityClicked"/>
+        <ToolbarItem Text="⟳" IconImageSource="refresh.png" Clicked="OnRefreshClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <CollectionView x:Name="CitiesCollectionView" ItemsSource="{Binding Sehirler}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="True" Padding="10">
+                            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto" ColumnSpacing="10" Padding="10">
+                                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                                   Text="{Binding Name}" 
+                                   FontSize="Large" 
+                                   FontAttributes="Bold" 
+                                   VerticalTextAlignment="Center" 
+                                   HorizontalOptions="Start" />
+
+                                <Image Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+                                   Source="{Binding Source}" 
+                                   Aspect="AspectFit" 
+                                   HeightRequest="150" 
+                                   HorizontalOptions="Fill" 
+                                   VerticalOptions="Center" />
+
+                                <Button Grid.Row="0" Grid.Column="1" 
+                                    Text="Kaldır" 
+                                    BackgroundColor="Transparent" 
+                                    TextColor="Red" 
+                                    FontAttributes="Bold"
+                                    Command="{Binding BindingContext.RemoveCityCommand, Source={x:Reference CitiesCollectionView}}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

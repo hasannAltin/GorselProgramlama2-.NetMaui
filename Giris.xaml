@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GorselOdev3.Giris"
+             Title="ÖDEV-3">
+
+    <VerticalStackLayout Padding="20" Spacing="15" HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="ÖDEV-3" FontSize="36" HorizontalOptions="Center" />
+        <Label Text="kendi resminiz:" FontSize="20" HorizontalOptions="Center" />
+        <Image Source="ben.png" HeightRequest="400" WidthRequest="300" HorizontalOptions="Center" />
+        <Label Text="Hasan ALTIN" FontSize="24" HorizontalOptions="Center" />
+        <Label Text="20010310016" FontSize="24" HorizontalOptions="Center" />
+        <Label Text="Bartın Üniversitesi Bilgisayar Mühendisliği Bölümü"
+               FontSize="18" HorizontalTextAlignment="Center" />
+    </VerticalStackLayout>
+
+</ContentPage>
